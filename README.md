@@ -1,34 +1,41 @@
 # Renamer
 
-A lightweight Windows command-line utility for adding a timestamp suffix to a filename.
+A set of lightweight Windows command-line utilities for adding a timestamp to a filename (either as a suffix or as a prefix).
 
-**Current version:** `ver_2025/11/15_2249`
+## Utilities Overview
 
-## How it works
+| Utility | Version | Behavior | Example |
+| :--- | :--- | :--- | :--- |
+| **`renamer.exe`** | `ver_2025/11/15_2249` | Appends timestamp **before the extension** (suffix) | `t.txt` -> `t_2015.12.28_11#25#00.txt` |
+| **`renamer2.exe`** | `ver_2025.11.15` | Prepends timestamp **to the beginning** of the filename (prefix) | `t.txt` -> `2025.08.28_11#25#00_t.txt` |
 
-The tool takes a specified file and appends the current (or file) date and time to its name before the extension:
+## Rules & Requirements
 
-```text
-t.txt  --->  t_2015.12.28_11#25#00.txt
-```
-
-* **Timestamp format:** `YYYY.MM.DD_HH24#MI#SS` (fixed; use `date_reformatter.exe` if you need to change the date format).
-* **Important requirement:** The target filename **must contain a dot (`.`)** (i.e., have an extension), otherwise the utility will not work.
+* **Timestamp format:** `YYYY.MM.DD_HH24#MI#SS` (fixed and cannot be changed directly; use `date_reformatter.exe` if you need to change the date format).
+* **Dot requirement:** The target filename **must contain a dot (`.`)** (i.e., have an extension), otherwise the utilities will not work.
 
 ## Usage
 
-Run the tool from the Windows Command Prompt (`cmd`) or a batch script (`.cmd` / `.bat`):
+Run either utility from the Windows Command Prompt (`cmd`) or a batch script (`.cmd` / `.bat`):
 
 ```cmd
 renamer <file_name>
+renamer2 <file_name>
 ```
 
-### Example
+### Examples
 
-```cmd
-renamer report.txt
-```
-Result: `report_2026.11.22_09#27#00.txt`
+1. **Add timestamp to the end (`renamer.exe`):**
+   ```cmd
+   renamer report.txt
+   ```
+   Result: `report_2026.11.22_09#30#00.txt`
+
+2. **Add timestamp to the beginning (`renamer2.exe`):**
+   ```cmd
+   renamer2 report.txt
+   ```
+   Result: `2026.11.22_09#30#00_report.txt`
 
 ## Author
 
